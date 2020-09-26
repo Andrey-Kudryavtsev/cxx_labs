@@ -1,0 +1,3 @@
+C:/Users/Admin/CLionProjects/course2/labs/RNK/cmake-build-debug/CMakeFiles/RNK.dir
+C:/Users/Admin/CLionProjects/course2/labs/RNK/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Admin/CLionProjects/course2/labs/RNK/cmake-build-debug/CMakeFiles/rebuild_cache.dir
