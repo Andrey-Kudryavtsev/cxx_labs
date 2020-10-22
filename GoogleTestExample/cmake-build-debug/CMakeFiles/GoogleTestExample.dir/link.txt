@@ -1,0 +1,3 @@
+C:\Users\Admin\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7660.37\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\GoogleTestExample.dir/objects.a
+C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\ar.exe cr CMakeFiles\GoogleTestExample.dir/objects.a @CMakeFiles\GoogleTestExample.dir\objects1.rsp
+C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE -g   -Wl,--whole-archive CMakeFiles\GoogleTestExample.dir/objects.a -Wl,--no-whole-archive  -o GoogleTestExample.exe -Wl,--out-implib,libGoogleTestExample.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\GoogleTestExample.dir\linklibs.rsp
