@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Admin/CLionProjects/course2/LifeGame/Field.h
+iostream
+-
+fstream
+-
+
+C:/Users/Admin/CLionProjects/course2/LifeGame/GameLogic.h
+iostream
+-
+Field.h
+C:/Users/Admin/CLionProjects/course2/LifeGame/Field.h
+thread
+-
+chrono
+-
+
+C:/Users/Admin/CLionProjects/course2/LifeGame/InputHandler.h
+string
+-
+
+C:/Users/Admin/CLionProjects/course2/LifeGame/LifeGame.h
+Field.h
+C:/Users/Admin/CLionProjects/course2/LifeGame/Field.h
+InputHandler.h
+C:/Users/Admin/CLionProjects/course2/LifeGame/InputHandler.h
+GameLogic.h
+C:/Users/Admin/CLionProjects/course2/LifeGame/GameLogic.h
+
+C:/Users/Admin/CLionProjects/course2/LifeGame/main.cpp
+iostream
+-
+LifeGame.h
+C:/Users/Admin/CLionProjects/course2/LifeGame/LifeGame.h
+
