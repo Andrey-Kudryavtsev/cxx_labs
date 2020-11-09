@@ -7,9 +7,9 @@ LifeGame::LifeGame(InputHandler & inputHandler, GameLogic & gameLogic)
 void LifeGame::play()
 {
     string command;
-    cout << "   Turn " << m_gameLogic.turnCounter << ":" << endl;
+    cout << "   Turn " << m_gameLogic.m_turnCounter << ":" << endl;
     m_gameLogic.m_field.draw();
-    while (!m_gameLogic.isOver)
+    while (!m_gameLogic.m_isOver)
     {
         getline(cin, command);
         switch (m_inputHandler.getCommand(command))
@@ -36,7 +36,7 @@ void LifeGame::play()
                 m_gameLogic.load(command);
                 break;
             case Command::WRONG_COMMAND:
-                cout << "I don't like the way u speak, freak >_<" << endl;
+                cout << "Please, enter correct command (reset, set XY, clear XY, step (N), back, save \"filename\", load \"filaname\")" << endl;
                 break;
             case Command::WRONG_TURN_AMOUNT:
                 cout << "Please, enter right parameter (N, where N = [1-" << INT_MAX << "])" << endl;

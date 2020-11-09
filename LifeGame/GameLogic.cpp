@@ -2,11 +2,11 @@
 
 void GameLogic::reset()
 {
-    backFlag = false; // после сброса поля нельзя выполнить back
-    turnCounter = 0;
+    m_backFlag = false; // после сброса поля нельзя выполнить back
+    m_turnCounter = 0;
     m_field.reset();
 
-    cout << "   Turn " << turnCounter << ":" << endl;
+    cout << "   Turn " << m_turnCounter << ":" << endl;
     m_field.draw();
 }
 
@@ -14,10 +14,10 @@ void GameLogic::set(string & command)
 {
     size_t x = command[4] - 'A';
     size_t y = command[5] - '0';
-    backFlag = false; // после установки клетки нельзя выполнить back
+    m_backFlag = false; // после установки клетки нельзя выполнить back
     m_field.set(x, y);
 
-    cout << "   Turn " << turnCounter << ":" << endl;
+    cout << "   Turn " << m_turnCounter << ":" << endl;
     m_field.draw();
 }
 
@@ -25,10 +25,10 @@ void GameLogic::clear(string & command)
 {
     size_t x = command[6] - 'A';
     size_t y = command[7] - '0';
-    backFlag = false; // после очистки поля нельзя выполнить back
+    m_backFlag = false; // после очистки поля нельзя выполнить back
     m_field.clear(x, y);
 
-    cout << "   Turn " << turnCounter << ":" << endl;
+    cout << "   Turn " << m_turnCounter << ":" << endl;
     m_field.draw();
 }
 
@@ -44,11 +44,11 @@ void GameLogic::step(string & command)
     {
         turnAmount = 1;
     }
-    backFlag = true; // после любого количества ходов можно выполнить back
+    m_backFlag = true; // после любого количества ходов можно выполнить back
     for (; turnAmount != 0; turnAmount--)
     {
         m_field.copyField(CopyDest::IN_PREV);
-        turnCounter++;
+        m_turnCounter++;
         for (size_t y = 0; y < m_field.getHeight(); y ++)
         {
             for (size_t x = 0; x < m_field.getWidth(); x++)
@@ -64,12 +64,12 @@ void GameLogic::step(string & command)
                 }
             }
         }
-        cout << "   Turn " << turnCounter << ":" << endl;
+        cout << "   Turn " << m_turnCounter << ":" << endl;
         m_field.draw();
         this_thread::sleep_for(chrono::milliseconds(300)); // уснуть на 300 миллисекунд (для красивого вывода ^.^)
         if (m_field.isEqual()) // если прошлое поле и текущее одинаковы, значит состояние не менялось, и игра заканчивается
         {
-            isOver = true;
+            m_isOver = true;
             break;
         }
     }
@@ -77,13 +77,13 @@ void GameLogic::step(string & command)
 
 void GameLogic::back()
 {
-    if (backFlag)
+    if (m_backFlag)
     {
-        turnCounter--;
+        m_turnCounter--;
         m_field.copyField(CopyDest::IN_CUR);
-        backFlag = false; // после выполнения back выполнить его еще раз нельзя без совершения хода
+        m_backFlag = false; // после выполнения back выполнить его еще раз нельзя без совершения хода
 
-        cout << "   Turn " << turnCounter << ":" << endl;
+        cout << "   Turn " << m_turnCounter << ":" << endl;
         m_field.draw();
     } else
     {
@@ -111,9 +111,9 @@ void GameLogic::load(string & command)
         cout << "File doesn't exist" << endl;
     } else
     {
-        backFlag = false; // нельзя выполнить back, если было загружено какое-либо поле
-        turnCounter = 0;
-        cout << "   Turn " << turnCounter << ":" << endl;
+        m_backFlag = false; // нельзя выполнить back, если было загружено какое-либо поле
+        m_turnCounter = 0;
+        cout << "   Turn " << m_turnCounter << ":" << endl;
         m_field.load(fin);
         m_field.draw();
         cout << "Field was successfully loaded" << endl;

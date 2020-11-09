@@ -3,12 +3,12 @@
 void Field::draw() const
 {
     cout << "     A  B  C  D  E  F  G  H  I  J" << endl << "    _____________________________" << endl;
-    for (size_t i = 0; i < height; i++)
+    for (size_t y = 0; y < m_height; y++)
     {
-        cout << i << "  | ";
-        for (size_t j = 0; j < width; j++)
+        cout << y << "  | ";
+        for (size_t x = 0; x < m_width; x++)
         {
-            cout << curField[i][j] << "  ";
+            cout << curField[y][x] << "  ";
         }
         cout << endl;
     }
@@ -16,11 +16,11 @@ void Field::draw() const
 
 bool Field::isEqual()
 {
-    for (size_t i = 0; i < height; i++)
+    for (size_t y = 0; y < m_height; y++)
     {
-        for (size_t j = 0; j < width; j++)
+        for (size_t x = 0; x < m_width; x++)
         {
-            if (curField[i][j] != prevField[i][j])
+            if (curField[y][x] != prevField[y][x])
             {
                 return false;
             };
@@ -31,11 +31,11 @@ bool Field::isEqual()
 }
 
 void Field::reset() {
-    for (size_t i = 0; i < height; i++)
+    for (size_t y = 0; y < m_height; y++)
     {
-        for (size_t j = 0; j < width; j++)
+        for (size_t x = 0; x < m_width; x++)
         {
-            curField[i][j] = '.';
+            curField[y][x] = '.';
         }
     }
 }
@@ -54,10 +54,10 @@ void Field::copyField(CopyDest copyDest)
 {
     if (copyDest == CopyDest::IN_PREV)
     {
-        memcpy(prevField, curField, height * width);
+        memcpy(prevField, curField, m_height * m_width);
     } else if (copyDest == CopyDest::IN_CUR)
     {
-        memcpy(curField, prevField, height * width);
+        memcpy(curField, prevField, m_height * m_width);
     }
 }
 
@@ -73,8 +73,8 @@ size_t Field::checkNeighbours(size_t & x, size_t & y)
     {
         for (int j = -1; j <= 1; j++)
         {
-            size_t neighbourX = (x + width + j) % width;
-            size_t neighbourY = (y + height + i) % height;
+            size_t neighbourX = (x + m_width + j) % m_width;
+            size_t neighbourY = (y + m_height + i) % m_height;
             if (((neighbourY != y) || (neighbourX != x)) && (prevField[neighbourY][neighbourX] == 'X'))
             {
                 neighbours++;
@@ -87,11 +87,11 @@ size_t Field::checkNeighbours(size_t & x, size_t & y)
 
 void Field::save(ofstream & fout)
 {
-    for (size_t i = 0; i < height; i++)
+    for (size_t y = 0; y < m_height; y++)
     {
-        for (size_t j = 0; j < width; j++)
+        for (size_t x = 0; x < m_width; x++)
         {
-            fout << curField[i][j] << "  ";
+            fout << curField[y][x] << "  ";
         }
         fout << endl;
     }
@@ -108,7 +108,7 @@ void Field::load(ifstream & fin)
     {
         curField[y][x] = c;
         prevField[y][x] = c;
-        if (++x == width)
+        if (++x == m_width)
         {
             x = 0;
             y++;

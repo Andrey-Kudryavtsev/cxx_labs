@@ -14,9 +14,9 @@ enum class CopyDest
 class Field
 {
 private:
-    static const size_t width = 10;
-    static const size_t height = 10;
-    char curField[height][width] = {{'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+    static const size_t m_width = 10;
+    static const size_t m_height = 10;
+    char curField[m_height][m_width] = {{'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                     {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                     {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                     {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
@@ -26,7 +26,7 @@ private:
                                     {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                     {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                     {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'}};
-    char prevField[height][width] = {{'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+    char prevField[m_height][m_width] = {{'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                      {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                      {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                      {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
@@ -37,8 +37,8 @@ private:
                                      {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'},
                                      {'.', '.', '.', '.', '.', '.', '.', '.', '.', '.'}};
 public:
-    size_t getWidth() { return width; }
-    size_t getHeight() { return height; }
+    size_t getWidth() { return m_width; }
+    size_t getHeight() { return m_height; }
     void draw() const;
     bool isEqual();
     void reset();
