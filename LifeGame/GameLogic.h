@@ -13,7 +13,7 @@ class GameLogic
 {
 private:
 public:
-    GameLogic(Field & field) : m_field(field){}
+    GameLogic(Field & field);
 
     Field m_field;
     size_t m_turnCounter = 0;

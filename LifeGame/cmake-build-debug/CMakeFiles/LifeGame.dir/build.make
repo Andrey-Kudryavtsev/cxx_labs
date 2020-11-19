@@ -77,6 +77,7 @@ include CMakeFiles/LifeGame.dir/progress.make
 include CMakeFiles/LifeGame.dir/flags.make
 
 CMakeFiles/LifeGame.dir/main.cpp.obj: CMakeFiles/LifeGame.dir/flags.make
+CMakeFiles/LifeGame.dir/main.cpp.obj: CMakeFiles/LifeGame.dir/includes_CXX.rsp
 CMakeFiles/LifeGame.dir/main.cpp.obj: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\CLionProjects\course2\LifeGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/LifeGame.dir/main.cpp.obj"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LifeGame.dir\main.cpp.obj -c C:\Users\Admin\CLionProjects\course2\LifeGame\main.cpp
@@ -90,6 +91,7 @@ CMakeFiles/LifeGame.dir/main.cpp.s: cmake_force
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\CLionProjects\course2\LifeGame\main.cpp -o CMakeFiles\LifeGame.dir\main.cpp.s
 
 CMakeFiles/LifeGame.dir/InputHandler.cpp.obj: CMakeFiles/LifeGame.dir/flags.make
+CMakeFiles/LifeGame.dir/InputHandler.cpp.obj: CMakeFiles/LifeGame.dir/includes_CXX.rsp
 CMakeFiles/LifeGame.dir/InputHandler.cpp.obj: ../InputHandler.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\CLionProjects\course2\LifeGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/LifeGame.dir/InputHandler.cpp.obj"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LifeGame.dir\InputHandler.cpp.obj -c C:\Users\Admin\CLionProjects\course2\LifeGame\InputHandler.cpp
@@ -103,6 +105,7 @@ CMakeFiles/LifeGame.dir/InputHandler.cpp.s: cmake_force
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\CLionProjects\course2\LifeGame\InputHandler.cpp -o CMakeFiles\LifeGame.dir\InputHandler.cpp.s
 
 CMakeFiles/LifeGame.dir/Field.cpp.obj: CMakeFiles/LifeGame.dir/flags.make
+CMakeFiles/LifeGame.dir/Field.cpp.obj: CMakeFiles/LifeGame.dir/includes_CXX.rsp
 CMakeFiles/LifeGame.dir/Field.cpp.obj: ../Field.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\CLionProjects\course2\LifeGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/LifeGame.dir/Field.cpp.obj"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LifeGame.dir\Field.cpp.obj -c C:\Users\Admin\CLionProjects\course2\LifeGame\Field.cpp
@@ -116,6 +119,7 @@ CMakeFiles/LifeGame.dir/Field.cpp.s: cmake_force
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\CLionProjects\course2\LifeGame\Field.cpp -o CMakeFiles\LifeGame.dir\Field.cpp.s
 
 CMakeFiles/LifeGame.dir/GameLogic.cpp.obj: CMakeFiles/LifeGame.dir/flags.make
+CMakeFiles/LifeGame.dir/GameLogic.cpp.obj: CMakeFiles/LifeGame.dir/includes_CXX.rsp
 CMakeFiles/LifeGame.dir/GameLogic.cpp.obj: ../GameLogic.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\CLionProjects\course2\LifeGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/LifeGame.dir/GameLogic.cpp.obj"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LifeGame.dir\GameLogic.cpp.obj -c C:\Users\Admin\CLionProjects\course2\LifeGame\GameLogic.cpp
@@ -129,6 +133,7 @@ CMakeFiles/LifeGame.dir/GameLogic.cpp.s: cmake_force
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\CLionProjects\course2\LifeGame\GameLogic.cpp -o CMakeFiles\LifeGame.dir\GameLogic.cpp.s
 
 CMakeFiles/LifeGame.dir/LifeGame.cpp.obj: CMakeFiles/LifeGame.dir/flags.make
+CMakeFiles/LifeGame.dir/LifeGame.cpp.obj: CMakeFiles/LifeGame.dir/includes_CXX.rsp
 CMakeFiles/LifeGame.dir/LifeGame.cpp.obj: ../LifeGame.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\CLionProjects\course2\LifeGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/LifeGame.dir/LifeGame.cpp.obj"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LifeGame.dir\LifeGame.cpp.obj -c C:\Users\Admin\CLionProjects\course2\LifeGame\LifeGame.cpp
@@ -158,6 +163,7 @@ LifeGame.exe: CMakeFiles/LifeGame.dir/Field.cpp.obj
 LifeGame.exe: CMakeFiles/LifeGame.dir/GameLogic.cpp.obj
 LifeGame.exe: CMakeFiles/LifeGame.dir/LifeGame.cpp.obj
 LifeGame.exe: CMakeFiles/LifeGame.dir/build.make
+LifeGame.exe: lib/libgtestd.a
 LifeGame.exe: CMakeFiles/LifeGame.dir/linklibs.rsp
 LifeGame.exe: CMakeFiles/LifeGame.dir/objects1.rsp
 LifeGame.exe: CMakeFiles/LifeGame.dir/link.txt

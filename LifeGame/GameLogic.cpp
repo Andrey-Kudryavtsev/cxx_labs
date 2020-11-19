@@ -1,5 +1,7 @@
 #include "GameLogic.h"
 
+GameLogic::GameLogic(Field &field) : m_field(field) {}
+
 void GameLogic::reset()
 {
     m_backFlag = false; // после сброса поля нельзя выполнить back
@@ -47,7 +49,7 @@ void GameLogic::step(string & command)
     m_backFlag = true; // после любого количества ходов можно выполнить back
     for (; turnAmount != 0; turnAmount--)
     {
-        m_field.copyField(CopyDest::IN_PREV);
+        m_field.step();
         m_turnCounter++;
         for (size_t y = 0; y < m_field.getHeight(); y ++)
         {
@@ -55,12 +57,14 @@ void GameLogic::step(string & command)
             {
                 cell = m_field.getCell(x, y);
                 neighbours = m_field.checkNeighbours(x, y);
-                if ((cell == '.') && (neighbours == 3))
+                if (cell == '.')
                 {
-                    m_field.set(x, y);
-                } else if ((cell == 'X') && (neighbours < 2 || neighbours > 3))
+                    if (neighbours == 3) { m_field.set(x, y); }
+                    else { m_field.clear(x, y); }
+                } else if (cell == 'X')
                 {
-                    m_field.clear(x, y);
+                    if (neighbours < 2 || neighbours > 3) { m_field.clear(x,y); }
+                    else { m_field.set(x,y); }
                 }
             }
         }
@@ -80,7 +84,7 @@ void GameLogic::back()
     if (m_backFlag)
     {
         m_turnCounter--;
-        m_field.copyField(CopyDest::IN_CUR);
+        m_field.back();
         m_backFlag = false; // после выполнения back выполнить его еще раз нельзя без совершения хода
 
         cout << "   Turn " << m_turnCounter << ":" << endl;

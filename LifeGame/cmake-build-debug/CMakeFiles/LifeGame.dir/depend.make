@@ -17,6 +17,26 @@ CMakeFiles/LifeGame.dir/LifeGame.cpp.obj: ../InputHandler.h
 CMakeFiles/LifeGame.dir/LifeGame.cpp.obj: ../LifeGame.cpp
 CMakeFiles/LifeGame.dir/LifeGame.cpp.obj: ../LifeGame.h
 
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest-death-test.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest-matchers.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest-message.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest-param-test.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest-printers.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest-test-part.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest-typed-test.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest_pred_impl.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/gtest_prod.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/custom/gtest-port.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/custom/gtest-printers.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/gtest-filepath.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/gtest-internal.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/gtest-param-util.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/gtest-port-arch.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/gtest-port.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/gtest-string.h
+CMakeFiles/LifeGame.dir/main.cpp.obj: ../lib/googletest/googletest/include/gtest/internal/gtest-type-util.h
 CMakeFiles/LifeGame.dir/main.cpp.obj: ../Field.h
 CMakeFiles/LifeGame.dir/main.cpp.obj: ../GameLogic.h
 CMakeFiles/LifeGame.dir/main.cpp.obj: ../InputHandler.h

@@ -1,5 +1,19 @@
 #include "Field.h"
 
+Field::Field()
+{
+    m_curField = new char*[m_height];
+    for (size_t i = 0; i < m_height; i++)
+    {
+        m_curField[i] = new char[m_width];
+        for (size_t j = 0; j < m_width; j++)
+        {
+            m_curField[i][j] = '.';
+        }
+    }
+    m_prevField = m_curField;
+}
+
 void Field::draw() const
 {
     cout << "     A  B  C  D  E  F  G  H  I  J" << endl << "    _____________________________" << endl;
@@ -8,7 +22,7 @@ void Field::draw() const
         cout << y << "  | ";
         for (size_t x = 0; x < m_width; x++)
         {
-            cout << curField[y][x] << "  ";
+            cout << m_curField[y][x] << "  ";
         }
         cout << endl;
     }
@@ -20,7 +34,7 @@ bool Field::isEqual()
     {
         for (size_t x = 0; x < m_width; x++)
         {
-            if (curField[y][x] != prevField[y][x])
+            if (m_curField[y][x] != m_prevField[y][x])
             {
                 return false;
             };
@@ -35,35 +49,52 @@ void Field::reset() {
     {
         for (size_t x = 0; x < m_width; x++)
         {
-            curField[y][x] = '.';
+            m_curField[y][x] = '.';
         }
     }
+    m_prevField = m_curField;
 }
 
 void Field::set(size_t & x, size_t & y)
 {
-    curField[y][x] = 'X';
+    m_curField[y][x] = 'X';
 }
 
 void Field::clear(size_t & x, size_t & y)
 {
-    curField[y][x] = '.';
+    m_curField[y][x] = '.';
 }
 
-void Field::copyField(CopyDest copyDest)
+void Field::step()
 {
-    if (copyDest == CopyDest::IN_PREV)
+    if (m_prevField != m_curField) // если это указатели на разные области памяти, то нужно очистить m_prevField
     {
-        memcpy(prevField, curField, m_height * m_width);
-    } else if (copyDest == CopyDest::IN_CUR)
-    {
-        memcpy(curField, prevField, m_height * m_width);
+        for (size_t i = 0; i < m_height; i++)
+        {
+            delete[] m_prevField[i];
+        }
+        delete [] m_prevField;
+        m_prevField = m_curField; // ...и адресовать его на m_curField
     }
+    m_curField = new char *[m_height];
+    for (size_t i = 0; i < m_height; i++)
+    {
+        m_curField[i] = new char[m_width];
+    }
+}
+
+void Field::back()
+{
+    for (size_t i = 0; i < m_height; i++) {
+        delete[] m_curField[i];
+    }
+    delete[] m_curField;
+    m_curField = m_prevField;
 }
 
 char Field::getCell(size_t & x, size_t & y)
 {
-    return prevField[y][x];
+    return m_prevField[y][x];
 }
 
 size_t Field::checkNeighbours(size_t & x, size_t & y)
@@ -75,7 +106,7 @@ size_t Field::checkNeighbours(size_t & x, size_t & y)
         {
             size_t neighbourX = (x + m_width + j) % m_width;
             size_t neighbourY = (y + m_height + i) % m_height;
-            if (((neighbourY != y) || (neighbourX != x)) && (prevField[neighbourY][neighbourX] == 'X'))
+            if (((neighbourY != y) || (neighbourX != x)) && (m_prevField[neighbourY][neighbourX] == 'X'))
             {
                 neighbours++;
             }
@@ -91,7 +122,7 @@ void Field::save(ofstream & fout)
     {
         for (size_t x = 0; x < m_width; x++)
         {
-            fout << curField[y][x] << "  ";
+            fout << m_curField[y][x] << "  ";
         }
         fout << endl;
     }
@@ -106,8 +137,8 @@ void Field::load(ifstream & fin)
     fin >> c;
     while (fin)
     {
-        curField[y][x] = c;
-        prevField[y][x] = c;
+        m_curField[y][x] = c;
+        m_prevField[y][x] = c;
         if (++x == m_width)
         {
             x = 0;
