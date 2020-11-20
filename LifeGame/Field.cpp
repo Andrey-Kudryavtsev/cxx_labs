@@ -14,6 +14,23 @@ Field::Field()
     m_prevField = m_curField;
 }
 
+Field::~Field()
+{
+    if (m_prevField != m_curField)
+    {
+        for (size_t i = 0; i < m_height; i++)
+        {
+            delete[] m_prevField[i];
+        }
+        delete [] m_prevField;
+    }
+    for (size_t i = 0; i < m_height; i++)
+    {
+        delete[] m_curField[i];
+    }
+    delete [] m_curField;
+}
+
 void Field::draw() const
 {
     cout << "     A  B  C  D  E  F  G  H  I  J" << endl << "    _____________________________" << endl;

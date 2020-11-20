@@ -14,6 +14,7 @@ private:
     char ** m_prevField;
 public:
     Field();
+    ~Field();
     size_t getWidth() { return m_width; }
     size_t getHeight() { return m_height; }
     void draw() const;
