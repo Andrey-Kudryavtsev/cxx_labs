@@ -83,11 +83,8 @@ TEST(LoadTest, test2)
 }
 
 int main() {
-//    InputHandler inputHandler;
-//    Field field;
-//    GameLogic gameLogic(field);
-//    LifeGame game(inputHandler, gameLogic);
-//    game.play();
+    //LifeGame game;
+    //game.play();
     testing::InitGoogleTest();;
     return RUN_ALL_TESTS();
 }

@@ -1,15 +1,10 @@
 #include "LifeGame.h"
 
-LifeGame::LifeGame(InputHandler & inputHandler, GameLogic & gameLogic)
-    : m_inputHandler(inputHandler),
-    m_gameLogic(gameLogic){}
-
 void LifeGame::play()
 {
     string command;
-    cout << "   Turn " << m_gameLogic.m_turnCounter << ":" << endl;
-    m_gameLogic.m_field.draw();
-    while (!m_gameLogic.m_isOver)
+    m_gameLogic.printStatus();
+    while (!m_gameLogic.isOver())
     {
         getline(cin, command);
         switch (m_inputHandler.getCommand(command))

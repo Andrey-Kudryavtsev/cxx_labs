@@ -11,7 +11,7 @@ private:
     InputHandler m_inputHandler;
     GameLogic m_gameLogic;
 public:
-    LifeGame(InputHandler &, GameLogic &);
+    LifeGame() = default;
 
     void play();
 };

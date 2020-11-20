@@ -2,12 +2,12 @@
 #include <stdexcept>
 #include "InputHandler.h"
 
-bool InputHandler::inBounds(size_t x)
+bool InputHandler::inBounds(size_t x) const
 {
     return (x >= 0 && x <=9);
 }
 
-Command InputHandler::getCommand(const std::string & command)
+Command InputHandler::getCommand(const std::string & command) const
 {
     if (command == "reset") { return Command::RESET; }
     else if (command == "back") { return Command::BACK; }

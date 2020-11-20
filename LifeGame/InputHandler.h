@@ -21,9 +21,9 @@ enum class Command
 class InputHandler
 {
 private:
-    bool inBounds(size_t);
+    bool inBounds(size_t) const;
 public:
-    Command getCommand(const std::string &);
+    Command getCommand(const std::string &) const;
 };
 
 #endif //LIFEGAME_INPUTHANDLER_H

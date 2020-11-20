@@ -12,21 +12,21 @@ using namespace std;
 class GameLogic
 {
 private:
-public:
-    GameLogic(Field & field);
-
     Field m_field;
     size_t m_turnCounter = 0;
     bool m_isOver = false;
     bool m_backFlag = false; // флаг определяет возможность использования команды back: true - можно, false - нельзя
-
+public:
+    GameLogic() = default;
+    bool isOver() const;
+    void printStatus() const;
     void reset();
-    void set(string &);
-    void clear(string &);
-    void step(string &);
+    void set(const string &);
+    void clear(const string &);
+    void step(const string &);
     void back();
-    void save(string &);
-    void load(string &);
+    void save(const string &) const;
+    void load(const string &);
 };
 
 #endif //LIFEGAME_GAMELOGIC_H

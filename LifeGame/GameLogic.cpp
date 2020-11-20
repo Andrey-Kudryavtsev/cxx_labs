@@ -1,6 +1,15 @@
 #include "GameLogic.h"
 
-GameLogic::GameLogic(Field &field) : m_field(field) {}
+bool GameLogic::isOver() const
+{
+    return m_isOver;
+}
+
+void GameLogic::printStatus() const
+{
+    cout << "   Turn " << m_turnCounter << ":" << endl;
+    cout << m_field;
+}
 
 void GameLogic::reset()
 {
@@ -8,33 +17,30 @@ void GameLogic::reset()
     m_turnCounter = 0;
     m_field.reset();
 
-    cout << "   Turn " << m_turnCounter << ":" << endl;
-    m_field.draw();
+    printStatus();
 }
 
-void GameLogic::set(string & command)
+void GameLogic::set(const string & command)
 {
     size_t x = command[4] - 'A';
     size_t y = command[5] - '0';
     m_backFlag = false; // после установки клетки нельзя выполнить back
     m_field.set(x, y);
 
-    cout << "   Turn " << m_turnCounter << ":" << endl;
-    m_field.draw();
+    printStatus();
 }
 
-void GameLogic::clear(string & command)
+void GameLogic::clear(const string & command)
 {
     size_t x = command[6] - 'A';
     size_t y = command[7] - '0';
     m_backFlag = false; // после очистки поля нельзя выполнить back
     m_field.clear(x, y);
 
-    cout << "   Turn " << m_turnCounter << ":" << endl;
-    m_field.draw();
+    printStatus();
 }
 
-void GameLogic::step(string & command)
+void GameLogic::step(const string & command)
 {
     char cell;
     size_t neighbours;
@@ -68,8 +74,7 @@ void GameLogic::step(string & command)
                 }
             }
         }
-        cout << "   Turn " << m_turnCounter << ":" << endl;
-        m_field.draw();
+        printStatus();
         this_thread::sleep_for(chrono::milliseconds(300)); // уснуть на 300 миллисекунд (для красивого вывода ^.^)
         if (m_field.isEqual()) // если прошлое поле и текущее одинаковы, значит состояние не менялось, и игра заканчивается
         {
@@ -87,15 +92,14 @@ void GameLogic::back()
         m_field.back();
         m_backFlag = false; // после выполнения back выполнить его еще раз нельзя без совершения хода
 
-        cout << "   Turn " << m_turnCounter << ":" << endl;
-        m_field.draw();
+        printStatus();
     } else
     {
         cout << "Your can't travel back in time right now!" << endl;
     }
 }
 
-void GameLogic::save(string & command)
+void GameLogic::save(const string & command) const
 {
     string filenameOut = command.substr(5) + ".txt";
     ofstream fout;
@@ -105,7 +109,7 @@ void GameLogic::save(string & command)
     fout.close();
 }
 
-void GameLogic::load(string & command)
+void GameLogic::load(const string & command)
 {
     string filenameIn = command.substr(5) + ".txt";
     ifstream fin;
@@ -117,9 +121,8 @@ void GameLogic::load(string & command)
     {
         m_backFlag = false; // нельзя выполнить back, если было загружено какое-либо поле
         m_turnCounter = 0;
-        cout << "   Turn " << m_turnCounter << ":" << endl;
         m_field.load(fin);
-        m_field.draw();
+        printStatus();
         cout << "Field was successfully loaded" << endl;
     }
     fin.close();

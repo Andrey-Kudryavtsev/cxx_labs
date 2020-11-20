@@ -3,49 +3,57 @@
 Field::Field()
 {
     m_curField = new char*[m_height];
+    m_prevField = new char*[m_height];
     for (size_t i = 0; i < m_height; i++)
     {
         m_curField[i] = new char[m_width];
+        m_prevField[i] = new char[m_width];
         for (size_t j = 0; j < m_width; j++)
         {
             m_curField[i][j] = '.';
+            m_prevField[i][j] = '.';
         }
     }
-    m_prevField = m_curField;
 }
 
 Field::~Field()
 {
-    if (m_prevField != m_curField)
-    {
-        for (size_t i = 0; i < m_height; i++)
-        {
-            delete[] m_prevField[i];
-        }
-        delete [] m_prevField;
-    }
     for (size_t i = 0; i < m_height; i++)
     {
-        delete[] m_curField[i];
+        delete [] m_curField[i];
+        delete [] m_prevField[i];
     }
     delete [] m_curField;
+    delete [] m_prevField;
 }
 
-void Field::draw() const
+size_t Field::getWidth() const
 {
-    cout << "     A  B  C  D  E  F  G  H  I  J" << endl << "    _____________________________" << endl;
-    for (size_t y = 0; y < m_height; y++)
-    {
-        cout << y << "  | ";
-        for (size_t x = 0; x < m_width; x++)
-        {
-            cout << m_curField[y][x] << "  ";
-        }
-        cout << endl;
-    }
+    return m_width;
 }
 
-bool Field::isEqual()
+size_t Field::getHeight() const
+{
+    return m_height;
+}
+
+std::ostream & operator<<(std::ostream & out, const Field & field)
+{
+    out << "     A  B  C  D  E  F  G  H  I  J" << endl << "    _____________________________" << endl;
+    for (size_t y = 0; y < field.m_height; y++)
+    {
+        out << y << "  | ";
+        for (size_t x = 0; x < field.m_width; x++)
+        {
+            cout << field.m_curField[y][x] << "  ";
+        }
+        out << endl;
+    }
+
+    return out;
+}
+
+bool Field::isEqual() const
 {
     for (size_t y = 0; y < m_height; y++)
     {
@@ -54,7 +62,7 @@ bool Field::isEqual()
             if (m_curField[y][x] != m_prevField[y][x])
             {
                 return false;
-            };
+            }
         }
     }
 
@@ -67,54 +75,37 @@ void Field::reset() {
         for (size_t x = 0; x < m_width; x++)
         {
             m_curField[y][x] = '.';
+            m_prevField[y][x] = '.';
         }
     }
-    m_prevField = m_curField;
 }
 
-void Field::set(size_t & x, size_t & y)
+void Field::set(const size_t & x, const size_t & y)
 {
     m_curField[y][x] = 'X';
 }
 
-void Field::clear(size_t & x, size_t & y)
+void Field::clear(const size_t & x, const size_t & y)
 {
     m_curField[y][x] = '.';
 }
 
 void Field::step()
 {
-    if (m_prevField != m_curField) // если это указатели на разные области памяти, то нужно очистить m_prevField
-    {
-        for (size_t i = 0; i < m_height; i++)
-        {
-            delete[] m_prevField[i];
-        }
-        delete [] m_prevField;
-        m_prevField = m_curField; // ...и адресовать его на m_curField
-    }
-    m_curField = new char *[m_height];
-    for (size_t i = 0; i < m_height; i++)
-    {
-        m_curField[i] = new char[m_width];
-    }
+    swap(m_curField, m_prevField);
 }
 
 void Field::back()
 {
-    for (size_t i = 0; i < m_height; i++) {
-        delete[] m_curField[i];
-    }
-    delete[] m_curField;
-    m_curField = m_prevField;
+    swap(m_curField, m_prevField);
 }
 
-char Field::getCell(size_t & x, size_t & y)
+char Field::getCell(const size_t & x, const size_t & y) const
 {
     return m_prevField[y][x];
 }
 
-size_t Field::checkNeighbours(size_t & x, size_t & y)
+size_t Field::checkNeighbours(const size_t & x, const size_t & y) const
 {
     size_t neighbours = 0;
     for (int i = -1; i <= 1; i++)
@@ -133,7 +124,7 @@ size_t Field::checkNeighbours(size_t & x, size_t & y)
     return neighbours;
 }
 
-void Field::save(ofstream & fout)
+void Field::save(ofstream & fout) const
 {
     for (size_t y = 0; y < m_height; y++)
     {

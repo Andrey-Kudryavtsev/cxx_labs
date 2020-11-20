@@ -15,18 +15,18 @@ private:
 public:
     Field();
     ~Field();
-    size_t getWidth() { return m_width; }
-    size_t getHeight() { return m_height; }
-    void draw() const;
-    bool isEqual();
+    size_t getWidth() const;
+    size_t getHeight() const;
+    friend std::ostream & operator<<(std::ostream &, const Field &);
+    bool isEqual() const;
     void reset();
-    void set(size_t &, size_t &);
-    void clear(size_t &, size_t &);
+    void set(const size_t &, const size_t &);
+    void clear(const size_t &, const size_t &);
     void step();
     void back();
-    char getCell(size_t &, size_t &);
-    size_t checkNeighbours(size_t &, size_t &);
-    void save(ofstream &);
+    char getCell(const size_t &, const size_t &) const;
+    size_t checkNeighbours(const size_t &, const size_t &) const;
+    void save(ofstream &) const;
     void load(ifstream &);
 };
 
