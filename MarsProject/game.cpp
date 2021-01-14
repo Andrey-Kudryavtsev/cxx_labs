@@ -11,19 +11,18 @@ namespace mars
     {
         srand(time(nullptr));
         Point harvCoords(rand() % width, rand() % height);
-        std::cout << "Harvester coordinates: " << harvCoords << std::endl;
-        m_harvester = new Harvester();                                                                        /// выделение динамической памяти
+        m_harvester = new Harvester();
         m_repeater = new Repeater(m_harvester->getLocalMap());
         m_harvester->bindRepeater(m_repeater);
         m_sapper = nullptr;
         m_worldMap.setTile(harvCoords, TileTypes::EMPTY); // высаживаем сборщика на поверхность. Все, что было на месте высадки, уничтожается
         m_worldMap.setShift(harvCoords);
-        m_mode = ManualMode::getInstance();              // m_mode = ManualMode::getInstance  // начинаем с ручного режима
+        m_mode = ManualMode::getInstance();               // начинаем с ручного режима
     }
 
     Game::~Game()
     {
-        delete m_mode;                                                                                                  /// удаление динамической памяти
+        delete m_mode;
         delete m_harvester;
         delete m_sapper;
         delete m_repeater;
@@ -49,7 +48,6 @@ namespace mars
 
     void Game::spawnSapper()
     {
-        std::cout << "SAPPER ON COMMAND" << std::endl;
         int32_t upBorderX = m_harvester->getLocalMap().getWidth();
         int32_t upBorderY = m_harvester->getLocalMap().getHeight();
         std::set<Point> emptyTiles;
@@ -70,12 +68,11 @@ namespace mars
             std::cout << "No free space for sapper" << std::endl;
         } else
         {
+            std::cout << "Sapper spawned" << std::endl;
             Point sapperCords = *(std::next(emptyTiles.begin(), rand() % emptyTiles.size()));
-            std::cout << "Sapper coords: " << sapperCords << std::endl;
             delete m_sapper;
             m_sapper = new Sapper();
             m_sapper->setLocalCoords(sapperCords);
-            std::cout << "Actual sapper coords: " << m_sapper->getLocalCoords() << std::endl;
             m_sapper->bindRepeater(m_repeater);
         }
     }
@@ -112,26 +109,26 @@ namespace mars
             if (!focusOnWindow && dynamic_cast<ManualMode*>(m_mode))
             {
                 std::string input;
-                std::getline(std::cin, input);                                             // выполняем считывание команды с консоли
-                ICommand *command = mars::Parser::parseConsoleCommand(input);                     /// выделяет динамическую память под command, НЕОБХОДИМ delete command!
-                if (dynamic_cast<ManualModeCommand*>(command) != nullptr)                         // если команда является ManualModeCommand
+                std::getline(std::cin, input);                                                                   // выполняем считывание команды с консоли
+                ICommand *command = mars::Parser::parseConsoleCommand(input);                                           /// выделяет динамическую память под command, НЕОБХОДИМ delete command!
+                if (dynamic_cast<ManualModeCommand*>(command) != nullptr)                                               // если команда является ManualModeCommand
                 {
-                    dynamic_cast<ManualMode*>(m_mode)->executeCommand(m_harvester, m_sapper, m_worldMap, command);     // выполнение команды
+                    dynamic_cast<ManualMode*>(m_mode)->executeCommand(m_harvester, m_sapper, m_worldMap, command);   // выполнение команды
                 } else if (dynamic_cast<SapperOnCommand*>(command) != nullptr)
                 {
                     spawnSapper();
                 } else if (dynamic_cast<SapperOffCommand*>(command) != nullptr)
                 {
                     deleteSapper();
-                } else if (dynamic_cast<ChangeModeCommand*>(command) != nullptr)                  // если команда является ChangeModeCommand
+                } else if (dynamic_cast<ChangeModeCommand*>(command) != nullptr)                                        // если команда является ChangeModeCommand
                 {
-                    changeMode(*(dynamic_cast<ChangeModeCommand*>(command)));                  // смена режима
-                } else                                                                            // если некорректная команда
+                    changeMode(*(dynamic_cast<ChangeModeCommand*>(command)));                                        // смена режима
+                } else                                                                                                  // если некорректная команда
                 {
                     std::cout << "wrong command" << std::endl;
                     continue;
                 }
-                delete command;                                                                   /// а вот и он
+                delete command;                                                                                         /// а вот и он
             }
             if (dynamic_cast<ScanMode*>(m_mode))
             {

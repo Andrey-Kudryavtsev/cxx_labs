@@ -10,22 +10,22 @@ namespace mars
 
     std::bitset<4> ScanCommand::checkCoords(Harvester *harvester) const
     {
-        std::bitset<4> dirs(15);                                                                                         // abcd, где a - LEFT, b - DOWN, c - RIGHT, d - UP. Выставляем все флаги в 1
+        std::bitset<4> dirs(15);                                                                 // abcd, где a - LEFT, b - DOWN, c - RIGHT, d - UP. Выставляем все флаги в 1
         Point localCoords = harvester->getLocalCoords();
 
-        if (harvester->inBounds(Point(localCoords.m_x, localCoords.m_y - 1)))                           // проверяем верхнюю клетку
+        if (harvester->inBounds(Point(localCoords.m_x, localCoords.m_y - 1)))                  // проверяем верхнюю клетку
         {
             dirs.reset(static_cast<int>(Direction::UP));
         }
-        if (harvester->inBounds(Point(localCoords.m_x + 1, localCoords.m_y)))                           // проверяем правую клетку
+        if (harvester->inBounds(Point(localCoords.m_x + 1, localCoords.m_y)))                  // проверяем правую клетку
         {
             dirs.reset(static_cast<int>(Direction::RIGHT));
         }
-        if (harvester->inBounds(Point(localCoords.m_x, localCoords.m_y + 1)))                           // проверяем нижнюю клетку
+        if (harvester->inBounds(Point(localCoords.m_x, localCoords.m_y + 1)))                  // проверяем нижнюю клетку
         {
             dirs.reset(static_cast<int>(Direction::DOWN));
         }
-        if (harvester->inBounds(Point(localCoords.m_x - 1, localCoords.m_y)))                           // проверяем левую клетку
+        if (harvester->inBounds(Point(localCoords.m_x - 1, localCoords.m_y)))                  // проверяем левую клетку
         {
             dirs.reset(static_cast<int>(Direction::LEFT));
         }
@@ -75,16 +75,15 @@ namespace mars
 
     void ScanCommand::execute(Harvester *harvester, Sapper *sapper, WorldMap & worldMap)
     {
-        std::bitset<4> dirs = checkCoords(harvester);                                                                   // проверяем, существуют ли клетки вокруг робота на его локальной карте
-        Point modifiers = harvester->expandLocalMap(dirs);                                                              // расширяем локальную карту робота (перевыделяем под нее место)
+        std::bitset<4> dirs = checkCoords(harvester);                                                                      // проверяем, существуют ли клетки вокруг робота на его локальной карте
+        Point modifiers = harvester->expandLocalMap(dirs);                                                                 // расширяем локальную карту робота (перевыделяем под нее место)
         Point oldShift = worldMap.getShift();
-        worldMap.setShift(Point(oldShift.m_x - modifiers.m_x, oldShift.m_y - modifiers.m_y));                     // меняем сдвиг робота относительно глобальной карты
+        worldMap.setShift(Point(oldShift.m_x - modifiers.m_x, oldShift.m_y - modifiers.m_y));                        // меняем сдвиг робота относительно глобальной карты
         if (sapper != nullptr)
         {
             Point oldSapperCoords = sapper->getLocalCoords();
-            sapper->setLocalCoords(Point(oldSapperCoords.m_x + modifiers.m_x, oldSapperCoords.m_y + modifiers.m_y));  // меняем локальные координаты сапера
+            sapper->setLocalCoords(Point(oldSapperCoords.m_x + modifiers.m_x, oldSapperCoords.m_y + modifiers.m_y)); // меняем локальные координаты сапера
         }
-        exploreTile(harvester, worldMap);                                                                            // обновляем клетки на локальной карте, основываясь на глобальной
-        std::cout << "Exploring.. Done!" << std::endl;
+        exploreTile(harvester, worldMap);                                                                              // обновляем клетки на локальной карте, основываясь на глобальной
     }
 }

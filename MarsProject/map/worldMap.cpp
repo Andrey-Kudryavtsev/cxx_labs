@@ -1,3 +1,4 @@
+#include "ctime"
 #include "worldMap.h"
 
 namespace mars
@@ -14,6 +15,29 @@ namespace mars
         for (int32_t i = 0; i < m_height*m_width; ++i)
         {
             m_worldMap[i] = static_cast<TileTypes>(map[i]);
+        }
+    }
+
+    WorldMap::WorldMap(const int32_t width, const int32_t height) : m_width(width), m_height(height)
+    {
+        srand(std::time(nullptr));
+        m_worldMap = new TileTypes[m_height*m_width];
+        for (int32_t i = 0; i < m_height*m_width; ++i)
+        {
+            int32_t n = rand() % 100;
+            if (n>=0 && n<80)
+            {
+                m_worldMap[i] = TileTypes::EMPTY;
+            } else if (n>=80 && n<85)
+            {
+                m_worldMap[i] = TileTypes::APPLE;
+            } else if (n>=85 && n<95)
+            {
+                m_worldMap[i] = TileTypes::ROCK;
+            } else if (n>=95 && n<100)
+            {
+                m_worldMap[i] = TileTypes::BOMB;
+            }
         }
     }
 

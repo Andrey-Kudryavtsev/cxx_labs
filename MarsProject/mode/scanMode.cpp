@@ -72,7 +72,6 @@ namespace mars
 
             if (!localMap.inBounds(current) || localMap.getTile(current) == TileTypes::UNKNOWN) // если точка не находится в границах карты или неизвестна, то ее нужно исследовать
             {
-                std::cout << "Find point of interest: " << current << std::endl;
                 for (Point elem = current; elem != start; elem = came_from[elem]) // записываем путь следующим образом: current, came_from[current], ... , start
                 {
                     path.push_back(elem);
@@ -103,15 +102,11 @@ namespace mars
         for (int32_t i = path.size() - 2; i > 0; --i) // путь записан следующим образом: current <- ... <- start // определяем в какую сторону нужно двигаться // доходим в клетку перед current
         {
             harvester->move(path[i]);
-            std::this_thread::sleep_for(std::chrono::milliseconds(170));
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
             GraphicView::getInstance()->draw(harvester->getLocalMap(), harvester->getLocalCoords(), (sapper == nullptr) ? Point(-1, -1) : sapper->getLocalCoords(), window);
             sf::Event event;
             while (window.pollEvent(event))
             {
-                if (event.type == sf::Event::LostFocus)
-                {
-                    std::cout << "LOST FOCUS" << std::endl;
-                }
                 if (event.type == sf::Event::Closed)
                 {
                     window.close();

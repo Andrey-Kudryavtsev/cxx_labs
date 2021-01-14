@@ -49,7 +49,6 @@ namespace mars
     {
         if (std::find(m_bombsCoords.begin(), m_bombsCoords.end(), coords) == m_bombsCoords.end())
         {
-            std::cout << "Bomb on coordinates " << coords << std::endl;
             m_bombsCoords.emplace_back(coords);
         }
     }
@@ -82,7 +81,6 @@ namespace mars
     {
         if (std::find(m_defusedBombsCoords.begin(), m_defusedBombsCoords.end(), coords) == m_defusedBombsCoords.end())
         {
-            std::cout << "Bomb on coordinates " << coords << std::endl;
             m_defusedBombsCoords.emplace_back(coords);
         }
     }

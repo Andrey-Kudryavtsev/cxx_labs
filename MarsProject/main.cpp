@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    std::ifstream fin;                                            // открытие файла с картой местности
+    std::ifstream fin;                                          // открытие файла с картой местности
     fin.open(filename);
     if (!fin.is_open())
     {
@@ -30,7 +30,8 @@ int main(int argc, char **argv) {
     }
     fin.close();
 
-    mars::WorldMap worldMap(width, height, map);
+//    mars::WorldMap worldMap(width, height, map);
+    mars::WorldMap worldMap(1000, 1000);
     mars::Game game(width, height, worldMap);
     game.play();
 

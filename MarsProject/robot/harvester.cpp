@@ -38,7 +38,6 @@ namespace mars
         m_apples++;
         m_localMap.setTile(m_localCoords, TileTypes::EMPTY);
         eraseAppleCoords(m_localCoords);
-//        m_applesCoords.erase(std::find(m_applesCoords.begin(), m_applesCoords.end(), m_localCoords));
         std::cout << "Collected " << m_apples << " apples! Keep looking around..." << std::endl;
     }
 
@@ -106,16 +105,12 @@ namespace mars
         Point localCoordsModifiers = m_localMap.expand(dirs);                                                            /// выделенная динамическая память не теряется
         m_localCoords.m_x += localCoordsModifiers.m_x;
         m_localCoords.m_y += localCoordsModifiers.m_y;
-        std::cout << "Local coords: " << m_localCoords << std::endl;
-        std::cout << "Apples count: " << m_applesCoords.size() << std::endl;
         int i = 0;
         for (Point &coords : m_applesCoords)
         {
-            std::cout << "Loop iteration: " << i << std::endl;
             ++i;
             coords.m_x += localCoordsModifiers.m_x;;
             coords.m_y += localCoordsModifiers.m_y;
-            std::cout << "Apples coords: " << coords << std::endl;
         }
         m_repeater->updateBombCoords(localCoordsModifiers);
         return localCoordsModifiers;

@@ -29,31 +29,7 @@ namespace mars
         bool allBombsDefused() const;
         void updateBombCoords(const Point &);
         void addDefusedBombCoords(const Point &);
-
-        void printDefusedBombs()
-        {
-            for (auto &bomb : m_defusedBombsCoords)
-            {
-                std::cout << bomb << ", ";
-            }
-            std::cout << std::endl;
-        }
-
-        void printBombs()
-        {
-            for (auto &bomb : m_bombsCoords)
-            {
-                std::cout << bomb << ", ";
-            }
-            std::cout << std::endl;
-        }
     };
 }
-// сборщик хранит указатель на передатчик
-// передатчик создается в конструкторе игры
-// передатчик имеет поле updated, которое каждый ход чекает сапер
-// если значение true, то карта сапера обновляется
-// сапер разминирует бомбы, указанные в поле m_bombsCoords, а сборщик записывает туда обнаруженные бомбы
-// как поступить с картой сапера? Дать ему свою, или пусть хранит указатель на карту в передатчике?
 
 #endif //MARS_REPEATER_H

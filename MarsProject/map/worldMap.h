@@ -16,6 +16,7 @@ namespace mars
         Point m_shift;
     public:
         WorldMap(int32_t, int32_t, const std::string &);
+        WorldMap(int32_t, int32_t);
         ~WorldMap() override;
 
         bool inBounds(const Point &) const override;
@@ -27,7 +28,7 @@ namespace mars
         int32_t getHeight() const override;
         Point toGlobalCoords(const Point &) const;
 
-        friend std::ostream &operator<<(std::ostream &, const WorldMap &); // TODO: удалить
+        friend std::ostream &operator<<(std::ostream &, const WorldMap &);
     };
 }
 

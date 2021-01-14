@@ -45,19 +45,6 @@ namespace mars
         Point getLocalCoords() const;
         void setLocalCoords(const Point &);
         Repeater * getRepeater();
-
-        void printLocalMap()
-        {
-            std::cout << m_localMap << std::endl;
-        }
-        void printApple()
-        {
-            for (auto &apple : m_applesCoords)
-            {
-                std::cout << apple << ", ";
-            }
-            std::cout << std::endl;
-        }
     };
 }
 

@@ -2,7 +2,7 @@
 
 namespace mars
 {
-    LocalMap::LocalMap() : m_height(1), m_width(1)                                                                       /// маленькое число для проверки, изменить
+    LocalMap::LocalMap() : m_height(1), m_width(1)
     {
         m_map = new TileTypes[m_height * m_width];
         for (int32_t i = 0; i < m_height*m_width; ++i)
@@ -76,7 +76,7 @@ namespace mars
             XYModifiers.m_x = add;
         }
 
-        auto *new_map = new TileTypes[new_height * new_width];                                                           /// выделяется динамическая память
+        auto *new_map = new TileTypes[new_height * new_width];
         for (int32_t y = 0; y < new_height; ++y)
         {
             for (int32_t x = 0; x < new_width; ++x)
@@ -91,10 +91,10 @@ namespace mars
             }
         }
 
-        delete [] m_map;                                                                                            /// удаляется старая динамическая память
+        delete [] m_map;
         m_width = new_width;
         m_height = new_height;
-        m_map = new_map;                                                                                            /// выделенная динамическая память не теряется
+        m_map = new_map;
         return XYModifiers;
     }
 

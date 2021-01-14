@@ -24,11 +24,6 @@ namespace mars
         Repeater * getRepeater();
         bool allBombsDefused() const;
         void eraseBombCoords(const Point &);
-
-        void printBomb()
-        {
-            m_repeater->printBombs();
-        }
     };
 }
 

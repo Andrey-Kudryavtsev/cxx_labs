@@ -31,19 +31,19 @@ namespace mars
         void play();
 
 
-        void printMode()                                 // TODO: удалить
-        {
-            if (dynamic_cast<ManualMode*>(m_mode))
-            {
-                std::cout << "manual" << std::endl;
-            } else if (dynamic_cast<ScanMode*>(m_mode))
-            {
-                std::cout << "scan" << std::endl;
-            } else if (dynamic_cast<AutoMode*>(m_mode))
-            {
-                std::cout << "auto" << std::endl;
-            }
-        }
+//        void printMode()                                 // TODO: удалить
+//        {
+//            if (dynamic_cast<ManualMode*>(m_mode))
+//            {
+//                std::cout << "manual" << std::endl;
+//            } else if (dynamic_cast<ScanMode*>(m_mode))
+//            {
+//                std::cout << "scan" << std::endl;
+//            } else if (dynamic_cast<AutoMode*>(m_mode))
+//            {
+//                std::cout << "auto" << std::endl;
+//            }
+//        }
     };
 }
 

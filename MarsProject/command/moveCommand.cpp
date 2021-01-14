@@ -52,9 +52,7 @@ namespace mars
             std::cout << "Sapper is blocking the way" << std::endl;
         } else if (destinationTile == TileTypes::EMPTY || destinationTile == TileTypes::APPLE)
         {
-            std::cout << "Moving... Done!" << std::endl;
             harvester->move(moveCoords);
-//            harvester->setLocalCoords(moveCoords); // убрать в move() у сборщика
         } else
         {
             std::cout << "Unknown landscape" << std::endl;

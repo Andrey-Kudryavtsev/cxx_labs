@@ -55,7 +55,7 @@ namespace mars
             for (int32_t i = path.size() - 2; i >= 0; i--)
             {
                 harvester->move(path[i]);
-                std::this_thread::sleep_for(std::chrono::milliseconds(170));
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
                 GraphicView::getInstance()->draw(harvester->getLocalMap(), harvester->getLocalCoords(), otherRobotCoords, window);
                 sf::Event event;
                 while (window.pollEvent(event))
@@ -73,10 +73,8 @@ namespace mars
             Sapper *sapper = dynamic_cast<Sapper*>(robot);
             for (int i = path.size(); i >= 0; i--)
             {
-                std::cout << "Sapper moving" << std::endl;
                 sapper->move(path[i]);
             }
-            std::cout << "Sapper defusing" << std::endl;
             sapper->defuse();
         }
     }
@@ -105,10 +103,8 @@ namespace mars
             {
                 for (auto elem = goal; elem != start; elem = came_from[elem]) // записываем путь следующим образом: goal, came_from[goal], ... , start
                 {
-                    std::cout << elem << " <- ";
                     path.push_back(elem);
                 }
-                std::cout << start << std::endl;
                 path.push_back(start);
                 return;
             }
@@ -138,7 +134,6 @@ namespace mars
     {
         while (!(harvester->allApplesCollected()))
         {
-            harvester->printApple();
             Point start_harv = harvester->getLocalCoords();
             Point goal_harv = harvester->getNearestAppleCoords();
             std::vector<Point> path_harv;
@@ -158,7 +153,6 @@ namespace mars
         }
         while (sapper != nullptr && !(sapper->allBombsDefused()))
         {
-            sapper->printBomb();
             Point start_sap = sapper->getLocalCoords();
             Point goal_sap = sapper->getNearestBombCoords(start_sap);
             std::vector<Point> path_sap;
@@ -182,11 +176,9 @@ namespace mars
         {
             std::cout << "Bomb has been defused" << std::endl;
             const std::vector<Point> &defusedBombs = repeater->getDefusedBombs();
-            repeater->printDefusedBombs();
             for (const Point &bomb : defusedBombs)
             {
-                std::cout << "bomb was erased" << std::endl;
-                worldMap.setTile(worldMap.toGlobalCoords(bomb), TileTypes::EMPTY);                                     // удаляем бомбу с глобальной карты
+                worldMap.setTile(worldMap.toGlobalCoords(bomb), TileTypes::EMPTY);                                      // удаляем бомбу с глобальной карты
                 harvester->updateLocalMap(bomb, TileTypes::EMPTY);                                                      // удаляем бомбу с локальной карты
             }
             repeater->resetDefusedBombs();
